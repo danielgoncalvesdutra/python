@@ -1,0 +1,87 @@
+agenda = {}
+ def relatorio(agenda):
+  print("Nome \t Telefone \t E-mail \t Twitter \t Instagram \t")
+  for i in agenda.keys():
+    #Mostrando as informações do contato
+    print("{}\t  {}\t\t  {}\t\t  {}\t\t {}\t\t".format(i,agenda[i][0],agenda[i][1],agenda[i][2],agenda[i][3]))
+    
+#Definindo função de adicionar novo contato
+def novo(agenda):
+  qtd = int(input("Quantos contatos você quer adicionar?"))
+  i = 0
+  if qtd > 1:
+    while qtd > i:
+      nome = input("Qual o nome do novo contato: ")
+      telefone = input("Qual o telefone do novo contato: ")
+      email = input("Qual o e-mail do novo contato: ")
+      twitter = input("Qual o nome twitter do novo contato: ")
+      instagram =  input("Qual o nome do instagram do novo contato: ")
+      agenda[nome]=[telefone,email,twitter,instagram]
+      qtd = qtd-1
+  else: 
+    nome = input("Qual o nome do novo contato: ")
+    telefone = input("Qual o telefone do novo contato: ")
+    email = input("Qual o e-mail do novo contato: ")
+    twitter = input("Qual o nome twitter do novo contato: ")
+    instagram =  input("Qual o nome do instagram do novo contato: ")
+    agenda[nome]=[telefone,email,twitter,instagram]
+
+def consultar(agenda):
+  nome = input("Informe o nome do contato:")
+  print("Nome \t Telefone \t E-mail \t Twitter \t Instagram \t")
+  if nome in agenda.keys():
+    for nome in agenda.keys():
+      #Mostrando as informações do contato
+      print("{}\t  {}\t\t  {}\t\t  {}\t\t {}\t\t".format(nome,agenda[nome][0],agenda[nome][1],agenda[nome][2],agenda[nome][3]))
+      break
+
+def editar(agenda):
+  nome = input("Qual o nome do contato que você deseja alterar: ")
+  for nome in agenda:
+    telefone = input("Novo telefone: ")
+    email = input("Novo e-mail: ")
+    twitter = input("Novo twitter: ")
+    instagram = input("Novo instagram: ")
+    agenda[nome][0] = telefone
+    agenda[nome][1] = email
+    agenda[nome][2] = twitter
+    agenda[nome][3] = instagram
+    print("Dados alterados com sucesso! \n {}\t  {}\t\t  {}\t\t  {}\t\t {}\t\t0".format(nome,agenda[nome][0],agenda[nome][1],agenda[nome][2],agenda[nome][3]))
+    break
+
+def remover(agenda):
+  nome = input("Digite o nome do contato que deseja remover")
+  del agenda[nome]
+  print("Contato removido com sucesso!")
+
+def menu():
+  item=1
+  lista=[0,1,2,3,4,5]
+
+  while item:
+    print(" ========= Menu ========= ")
+    print("1 - Adicionar um contato")
+    print("2 - Consultar um contato")
+    print("3 - Editar um contato")
+    print("4 - Remover um contato")
+    print("5 - Relatório")
+    print("0 - Sair")
+    item = eval(input("\nEscolha uma opção:"))
+    if item in lista:
+
+      if(item ==1):
+        novo(agenda)
+      elif(item ==2):
+        consultar(agenda)
+      elif(item ==3):
+        editar(agenda)
+      elif(item==4):
+        remover(agenda)
+      elif(item==5):
+        relatorio(agenda)
+      elif(item ==0):
+       break
+    else:
+        print("Opção incorreta")
+
+menu()
